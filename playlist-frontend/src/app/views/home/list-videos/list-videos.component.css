@@ -3,3 +3,11 @@
     padding-left: 2%;
     padding-right: 2%;
 }
+
+#fxLayout{
+    padding: 2%;
+}
+
+#iteracao-ngfor{
+    margin: 0.5%;
+}
