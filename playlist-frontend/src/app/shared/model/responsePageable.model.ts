@@ -1,13 +1,14 @@
+import { Result } from './result.model';
+
 export class ResponsePageable{
-    pageCount: number;
-    totalItemCount: number;
-    pageNumber: number;
-    pageSize: number;
-    hasPreviousPage: boolean;
-    hasNextPage: boolean;
-    isFirstPage: boolean;
-    isLastPage: boolean;
-    firstItemOnPage: number;
-    lastItemOnPage: number;
-    items: any[];
+    result: Result;
+    id: number;
+    exception: any;
+    status: number;
+    isCanceled: boolean;
+    isCompleted: boolean;
+    isCompletedSuccessfully: boolean;
+    creationOptions: number;
+    asyncState: any;
+    isFaulted: boolean;
 }

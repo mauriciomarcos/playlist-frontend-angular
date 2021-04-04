@@ -4,5 +4,5 @@ export class Video{
   nomeCanal: string;
   dataCadastro: Date;
   dataViualizacao: Date;
-  linkVideoExterno: string
+  linkVideoExterno: string;
 }

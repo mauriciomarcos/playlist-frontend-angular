@@ -8,7 +8,8 @@ import { ResponsePageable } from '../model/responsePageable.model';
 })
 export class VideoService {
 
-  apiURL = 'http://localhost:59009​/api​/Video';
+  apiURL = 'https://localhost:44346/api/Video/buscarPaginado';
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application-json'
@@ -16,7 +17,8 @@ export class VideoService {
   }
   constructor(private httpClient: HttpClient) { }
 
-  public getVideos(): Observable<ResponsePageable>{
-    return this.httpClient.get<ResponsePageable>(this.apiURL)
+  public getVideosPagineted(flag: boolean): Observable<ResponsePageable>{
+    console.log(this.apiURL + '?visualizado=' + flag);
+    return this.httpClient.get<ResponsePageable>(this.apiURL + '?visualizado=' + flag)
   }
 }
