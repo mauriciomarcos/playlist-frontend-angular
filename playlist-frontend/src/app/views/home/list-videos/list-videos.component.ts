@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Video } from 'src/app/shared/model/video.model';
 import { VideoService } from 'src/app/shared/service/video.service';
 
@@ -12,7 +13,10 @@ export class ListVideosComponent implements OnInit {
   videosAssistidos: Video[];
   videosNaoAssistidos: Video[];
 
-  constructor(public videoService: VideoService) { }
+  constructor(
+    public videoService: VideoService,
+    public sanitizer: DomSanitizer
+    ) { }
 
   ngOnInit(): void {
     this.getVideosAssistidos()
@@ -24,6 +28,10 @@ export class ListVideosComponent implements OnInit {
       if (dadosRetorno != null){
         this.videosAssistidos = dadosRetorno.result.items;
         console.log(this.videosAssistidos);
+
+        this.videosAssistidos.forEach(video => {
+          video.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(video.linkVideoExterno);
+        });
       }
     });
   }
@@ -33,6 +41,10 @@ export class ListVideosComponent implements OnInit {
       if (dadosRetorno != null){
         this.videosNaoAssistidos = dadosRetorno.result.items;
         console.log(this.videosNaoAssistidos);
+
+        this.videosNaoAssistidos.forEach(video => {
+          video.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(video.linkVideoExterno);
+        })
       }      
     });
   }
