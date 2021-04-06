@@ -15,13 +15,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LocalDateTimePipe } from './shared/pipe/local-date-time.pipe';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatDialogModule} from '@angular/material/dialog';
+import { VideoFormDialogComponent } from './views/home/video-form-dialog/video-form-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ListVideosComponent,
-    LocalDateTimePipe
+    LocalDateTimePipe,
+    VideoFormDialogComponent
   ],
   imports: [
     HttpClientModule,
@@ -34,7 +37,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatTabsModule,
     MatCardModule,
     FlexLayoutModule,
-    MatChipsModule
+    MatChipsModule,
+    MatDialogModule
   ],
   providers: [
     LocalDateTimePipe
