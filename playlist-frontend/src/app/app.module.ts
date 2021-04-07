@@ -17,6 +17,9 @@ import { LocalDateTimePipe } from './shared/pipe/local-date-time.pipe';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatDialogModule} from '@angular/material/dialog';
 import { VideoFormDialogComponent } from './views/home/video-form-dialog/video-form-dialog.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,11 @@ import { VideoFormDialogComponent } from './views/home/video-form-dialog/video-f
     MatCardModule,
     FlexLayoutModule,
     MatChipsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatInputModule,
+    MatNativeDateModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     LocalDateTimePipe

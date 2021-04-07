@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   addVideo(): void {
     const dialogRef = this.dialog.open(VideoFormDialogComponent, {
-      width: '250px',
+      minWidth: '400px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
