@@ -16,10 +16,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { LocalDateTimePipe } from './shared/pipe/local-date-time.pipe';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatDialogModule} from '@angular/material/dialog';
-import { VideoFormDialogComponent } from './views/home/video-form-dialog/video-form-dialog.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { VideoFormCreateDialogComponent } from './views/home/video-formCreate-dialog/video-formCreate-dialog.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,7 @@ import {MatInputModule} from '@angular/material/input';
     HomeComponent,
     ListVideosComponent,
     LocalDateTimePipe,
-    VideoFormDialogComponent
+    VideoFormCreateDialogComponent
   ],
   imports: [
     HttpClientModule,
@@ -45,7 +48,10 @@ import {MatInputModule} from '@angular/material/input';
     MatInputModule,
     MatNativeDateModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatProgressBarModule,
+    MatPaginatorModule
   ],
   providers: [
     LocalDateTimePipe

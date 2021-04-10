@@ -42,3 +42,18 @@
     background-color: #D3D3D3 !important;
     color: black !important;
 }
+
+.mat-card-acao{
+    padding-left: 10px;
+    padding-top: 0px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+    margin-bottom: 0px;
+}
+
+.mat-card-button-acao{
+    background-color: #FFFFFF !important;
+    color: black !important;
+    cursor: pointer;
+    border-radius: 25%;
+}

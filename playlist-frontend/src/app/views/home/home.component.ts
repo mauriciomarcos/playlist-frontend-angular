@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { VideoFormDialogComponent } from './video-form-dialog/video-form-dialog.component';
+import { VideoFormCreateDialogComponent } from './video-formCreate-dialog/video-formCreate-dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -15,12 +15,12 @@ export class HomeComponent implements OnInit {
   }
 
   addVideo(): void {
-    const dialogRef = this.dialog.open(VideoFormDialogComponent, {
+    const dialogRef = this.dialog.open(VideoFormCreateDialogComponent, {
       minWidth: '400px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      console.log('Formulário de cadastro fechado.');
     });
   }
 }
