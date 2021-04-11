@@ -15,7 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LocalDateTimePipe } from './shared/pipe/local-date-time.pipe';
 import {MatChipsModule} from '@angular/material/chips';
-import {MatDialogModule} from '@angular/material/dialog';
+import {MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
@@ -23,6 +23,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { VideoFormCreateDialogComponent } from './views/home/video-formCreate-dialog/video-formCreate-dialog.component';
+import { VideoFormUpdateDialogComponent } from './views/home/video-form-update-dialog/video-form-update-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { VideoFormCreateDialogComponent } from './views/home/video-formCreate-di
     HomeComponent,
     ListVideosComponent,
     LocalDateTimePipe,
-    VideoFormCreateDialogComponent
+    VideoFormCreateDialogComponent,
+    VideoFormUpdateDialogComponent,
   ],
   imports: [
     HttpClientModule,
@@ -54,7 +56,9 @@ import { VideoFormCreateDialogComponent } from './views/home/video-formCreate-di
     MatPaginatorModule
   ],
   providers: [
-    LocalDateTimePipe
+    LocalDateTimePipe,
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: {} }
   ],
   bootstrap: [AppComponent]
 })

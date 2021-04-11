@@ -15,12 +15,8 @@ export class HomeComponent implements OnInit {
   }
 
   addVideo(): void {
-    const dialogRef = this.dialog.open(VideoFormCreateDialogComponent, {
-      minWidth: '400px',
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('Formulário de cadastro fechado.');
+    this.dialog.open(VideoFormCreateDialogComponent, {
+      minWidth: '400px'
     });
   }
 }

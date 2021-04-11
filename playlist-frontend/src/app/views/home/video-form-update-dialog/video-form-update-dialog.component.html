@@ -1,0 +1,38 @@
+
+<h1 mat-dialog-title>Atualização</h1>
+<div mat-dialog-content>
+  <form class="formulario" [formGroup]="videoForm">
+    <input type="hidden" formControlName="id" name="id">
+
+    <mat-form-field class="full-width">
+      <mat-label>Descrição do vídeo:</mat-label>
+      <input matInput formControlName="descricaoVideo" name="descricaoVideo">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Nome do canal:</mat-label>
+      <input matInput formControlName="nomeCanal" name="nomeCanal">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Link do vídeo:</mat-label>
+      <input matInput formControlName="linkVideoExterno" name="linkVideoExterno">
+    </mat-form-field>
+
+    <div fxLayout="row wrap">
+      <div fxFlex="40" fxFill fxLayoutAlign="start center">
+        <mat-form-field class="full-width">
+          <mat-label>Data de cadastro:</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dataCadastro" name="dataCadastro" disabled>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+    
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary">Adicionar</button>
+  <button mat-button>Cancelar</button>
+</div>

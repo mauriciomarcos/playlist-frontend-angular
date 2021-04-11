@@ -11,7 +11,6 @@ import { VideoService } from 'src/app/shared/service/video.service';
 export class VideoFormCreateDialogComponent implements OnInit {
   
   public videoForm: FormGroup;
-  public id: string;
 
   constructor(
     private fb: FormBuilder,
@@ -29,7 +28,6 @@ export class VideoFormCreateDialogComponent implements OnInit {
       this.dialogRef.close();
       window.location.reload();
     });
-
   }
 
   cancel(): void {
@@ -43,7 +41,7 @@ export class VideoFormCreateDialogComponent implements OnInit {
       descricaoVideo: ['', [Validators.required]],
       nomeCanal: ['', [Validators.required]],
       dataCadastro: ['', [Validators.required]],
-      linkVideoExterno: ['']
+      linkVideoExterno: ['', [Validators.required]]
     });
   }
 }

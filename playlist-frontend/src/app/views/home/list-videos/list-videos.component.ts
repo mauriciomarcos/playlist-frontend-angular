@@ -5,8 +5,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Result } from 'src/app/shared/model/result.model';
 import { Video } from 'src/app/shared/model/video.model';
 import { VideoService } from 'src/app/shared/service/video.service';
-import { VideoFormCreateDialogComponent } from '../video-formCreate-dialog/video-formCreate-dialog.component';
-
+import { VideoFormUpdateDialogComponent } from '../video-form-update-dialog/video-form-update-dialog.component';
 @Component({
   selector: 'app-list-videos',
   templateUrl: './list-videos.component.html',
@@ -66,11 +65,11 @@ export class ListVideosComponent implements OnInit {
     });
   }
 
-  updateVideo(id: string): void {
-    const dialogRef = this.dialog.open(VideoFormCreateDialogComponent, {
-      minWidth: '400px'
+  updateVideo(video: Video): void {
+    this.dialog.open(VideoFormUpdateDialogComponent, {
+      minWidth: '400px',
+      data: video
     });
-  
   }
 
   private iniciaConfiguracaoPaginacao(){
