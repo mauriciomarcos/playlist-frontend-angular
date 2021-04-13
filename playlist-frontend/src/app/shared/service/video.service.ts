@@ -10,9 +10,10 @@ import { Video } from '../model/video.model';
 export class VideoService {
   baseURL = 'https://localhost:44346/api/Video';
 
-  buscaPaginado = '/buscarPaginado';
   criar = '/criar';
-  buscarPorId = 'buscarPorId/'
+  atualizar = '/atualizar/'
+  buscaPaginado = '/buscarPaginado';
+  buscarPorId = '/buscarPorId/'
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -22,8 +23,10 @@ export class VideoService {
   constructor(private httpClient: HttpClient) { }
 
   public getVideosPagineted(flag: boolean): Observable<ResponsePageable>{
-    console.log(this.baseURL + this.buscaPaginado + '?visualizado=' + flag);
-    return this.httpClient.get<ResponsePageable>(this.baseURL + this.buscaPaginado + '?visualizado=' + flag)
+    let endpoint = (this.baseURL + this.buscaPaginado + '?visualizado=' + flag);
+    
+    console.log(endpoint);
+    return this.httpClient.get<ResponsePageable>(endpoint)
   }
 
   public getById(id: string): Observable<ResponsePageable>{
@@ -34,6 +37,12 @@ export class VideoService {
   }
 
   public postVideo(video: Video): Observable<Video>{
-    return this.httpClient.post<Video>(this.baseURL + this.criar, video, this.httpOptions);
+    let endpoint = this.baseURL + this.criar
+    return this.httpClient.post<Video>(endpoint, video, this.httpOptions);
+  };
+
+  public putVideo(id: string, video: Video): Observable<Video>{
+    let endpoint = this.baseURL + this.atualizar + id
+    return this.httpClient.put<Video>(endpoint, video, this.httpOptions);
   };
 }

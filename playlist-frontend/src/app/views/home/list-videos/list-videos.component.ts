@@ -72,7 +72,7 @@ export class ListVideosComponent implements OnInit {
     });
   }
 
-  private iniciaConfiguracaoPaginacao(){
+  iniciaConfiguracaoPaginacao(){
     this.paginator.itemsPerPageLabel = "Itens por página";
     this.paginator.nextPageLabel = "Próxima página";
     this.paginator.previousPageLabel = "Página anterior";
