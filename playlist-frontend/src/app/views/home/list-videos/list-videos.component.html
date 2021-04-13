@@ -2,9 +2,7 @@
     <mat-tab label="NÃO VISUALIZADOS">
         <mat-progress-bar *ngIf="!controleCarregamentoVideosAssistidos" mode="indeterminate"></mat-progress-bar>
         <div *ngIf="controleCarregamentoVideosAssistidos" id="fxLayout" fxLayout="row wrap" fxLayoutAlign="start center">
-       
-            <ng-container *ngFor="let video of videosNaoAssistidos" id="ngContainer">
-                
+            <ng-container *ngFor="let video of videosNaoAssistidos" id="ngContainer">                
                 <input type="hidden" [value]="video.id"/>
                 <mat-card fxFlex="0 1 calc(33.3% - 11px)" 
                           fxFlex.lt-md="0 1 calc(50% - 11px)" 
