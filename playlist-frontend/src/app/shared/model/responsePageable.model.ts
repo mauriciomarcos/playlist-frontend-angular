@@ -1,14 +1,15 @@
-import { Result } from './result.model';
+import { Video } from './video.model';
 
 export class ResponsePageable{
-    result: Result;
-    id: number;
-    exception: any;
-    status: number;
-    isCanceled: boolean;
-    isCompleted: boolean;
-    isCompletedSuccessfully: boolean;
-    creationOptions: number;
-    asyncState: any;
-    isFaulted: boolean;
+    pageCount: number;
+    totalItemCount: number;
+    pageNumber: number;
+    pageSize: number;
+    hasPreviousPage: boolean;
+    hasNextPage: boolean;
+    isFirstPage: boolean;
+    isLastPage: boolean;
+    firstItemOnPage: number;
+    lastItemOnPage: number;
+    items: Video[];
 }

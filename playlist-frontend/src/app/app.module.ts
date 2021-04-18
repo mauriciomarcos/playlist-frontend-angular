@@ -24,6 +24,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { VideoFormCreateDialogComponent } from './views/home/video-formCreate-dialog/video-formCreate-dialog.component';
 import { VideoFormUpdateDialogComponent } from './views/home/video-form-update-dialog/video-form-update-dialog.component';
+import { ConfimationDialogComponent } from './shared/component/confimation-dialog/confimation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { VideoFormUpdateDialogComponent } from './views/home/video-form-update-d
     LocalDateTimePipe,
     VideoFormCreateDialogComponent,
     VideoFormUpdateDialogComponent,
+    ConfimationDialogComponent,
   ],
   imports: [
     HttpClientModule,

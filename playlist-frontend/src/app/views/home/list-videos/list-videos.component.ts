@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Result } from 'src/app/shared/model/result.model';
+import { ResponsePageable } from 'src/app/shared/model/responsePageable.model';
 import { Video } from 'src/app/shared/model/video.model';
 import { VideoService } from 'src/app/shared/service/video.service';
 import { VideoFormUpdateDialogComponent } from '../video-form-update-dialog/video-form-update-dialog.component';
@@ -15,7 +15,7 @@ export class ListVideosComponent implements OnInit {
 
   videosAssistidos: Video[];
   videosNaoAssistidos: Video[];
-  paginacaoResult: Result = new Result();
+  paginacaoResult: ResponsePageable = new ResponsePageable();
 
   controleCarregamentoVideosAssistidos: boolean = false;
   controleCarregamentoVideosNaoAssistidos: boolean = false;
@@ -36,8 +36,8 @@ export class ListVideosComponent implements OnInit {
   getVideosAssistidos(){
     this.videoService.getVideosPagineted(true).subscribe(dadosRetorno => {
       if (dadosRetorno != null){
-        this.paginacaoResult = dadosRetorno.result;
-        this.videosAssistidos = dadosRetorno.result.items;
+        this.paginacaoResult = dadosRetorno;
+        this.videosAssistidos = dadosRetorno.items;
 
         console.log(this.videosAssistidos);
 
@@ -52,8 +52,8 @@ export class ListVideosComponent implements OnInit {
   getVideosNaoAssistidos(){
     this.videoService.getVideosPagineted(false).subscribe(dadosRetorno => {
       if (dadosRetorno != null){
-        this.paginacaoResult = dadosRetorno.result;
-        this.videosNaoAssistidos = dadosRetorno.result.items;
+        this.paginacaoResult = dadosRetorno;
+        this.videosNaoAssistidos = dadosRetorno.items;
 
         console.log(this.videosNaoAssistidos);
 

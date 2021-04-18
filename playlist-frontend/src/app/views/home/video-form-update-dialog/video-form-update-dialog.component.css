@@ -7,3 +7,11 @@
 .full-width{
     width: 100%;
 }
+
+.container {
+    display: flex;
+}
+
+button:nth-child(1) {
+    margin-right: auto;
+}

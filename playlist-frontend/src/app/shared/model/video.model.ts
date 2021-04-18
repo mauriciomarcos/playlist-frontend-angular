@@ -9,4 +9,5 @@ export class Video{
   dataViualizacao: Date;
   linkVideoExterno: string;
   urlSafe: SafeResourceUrl;
+  visualizado: boolean
 }

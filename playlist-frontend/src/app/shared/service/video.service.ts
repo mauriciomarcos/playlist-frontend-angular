@@ -11,9 +11,11 @@ export class VideoService {
   baseURL = 'https://localhost:44346/api/Video';
 
   criar = '/criar';
-  atualizar = '/atualizar/'
+  atualizar = '/atualizar/';
+  excluir = '/excluir/'
   buscaPaginado = '/buscarPaginado';
-  buscarPorId = '/buscarPorId/'
+  buscarPorId = '/buscarPorId';
+
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -29,11 +31,11 @@ export class VideoService {
     return this.httpClient.get<ResponsePageable>(endpoint)
   }
 
-  public getById(id: string): Observable<ResponsePageable>{
+  public getById(id: string): Observable<Video>{
     let endpoint = (this.baseURL + this.buscarPorId + id);
 
     console.log(endpoint);
-    return this.httpClient.get<ResponsePageable>(endpoint)
+    return this.httpClient.get<Video>(endpoint)
   }
 
   public postVideo(video: Video): Observable<Video>{
@@ -42,7 +44,12 @@ export class VideoService {
   };
 
   public putVideo(id: string, video: Video): Observable<Video>{
-    let endpoint = this.baseURL + this.atualizar + id
+    let endpoint = this.baseURL + this.atualizar + id;
     return this.httpClient.put<Video>(endpoint, video, this.httpOptions);
   };
+
+  public delete(id: string): Observable<Video>{
+    let endpoint = this.baseURL + this.excluir + id;
+    return this.httpClient.delete<Video>(endpoint, this.httpOptions);
+  }
 }
