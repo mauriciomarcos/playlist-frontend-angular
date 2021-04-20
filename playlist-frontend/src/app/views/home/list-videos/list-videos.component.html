@@ -37,8 +37,8 @@
         </div>
 
         <mat-paginator fxLayoutAlign="center center" 
-            [length]="paginacaoResult.totalItemCount" 
-            [pageSize]="paginacaoResult.pageSize" 
+            [length]="paginacaoResultNaoVisualizados.totalItemCount" 
+            [pageSize]="paginacaoResultNaoVisualizados.pageSize" 
             [pageSizeOptions]="[3, 6, 9]" 
             (page)="onChangePaginacao($event, false)">
         </mat-paginator>
@@ -82,8 +82,8 @@
         </div>
 
         <mat-paginator fxLayoutAlign="center center" 
-            [length]="paginacaoResult.totalItemCount" 
-            [pageSize]="paginacaoResult.pageSize" 
+            [length]="paginacaoResultVisualizados.totalItemCount" 
+            [pageSize]="paginacaoResultVisualizados.pageSize" 
             [pageSizeOptions]="[3, 6, 9]" 
             (page)="onChangePaginacao($event, true)">
         </mat-paginator>

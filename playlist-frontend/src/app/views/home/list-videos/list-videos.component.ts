@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ResponsePageable } from 'src/app/shared/model/responsePageable.model';
 import { Video } from 'src/app/shared/model/video.model';
@@ -15,7 +16,8 @@ export class ListVideosComponent implements OnInit {
 
   videosAssistidos: Video[];
   videosNaoAssistidos: Video[];
-  paginacaoResult: ResponsePageable = new ResponsePageable();
+  paginacaoResultVisualizados: ResponsePageable = new ResponsePageable();
+  paginacaoResultNaoVisualizados: ResponsePageable = new ResponsePageable();
   controleCarregamentoVideosAssistidos: boolean = false;
   controleCarregamentoVideosNaoAssistidos: boolean = false;
 
@@ -32,8 +34,22 @@ export class ListVideosComponent implements OnInit {
     this.getVideos(true);
   }
 
+  // public changeTab(changeEvent: MatTabChangeEvent): void {
+  //   if (changeEvent.index == 0){      
+  //     this.videoService.getVideosPagineted(null, null, false).subscribe(dadosRetorno => {      
+  //       this.paginacaoResult = dadosRetorno;    
+  //       console.log('Não visualizados ' + this.paginacaoResult.totalItemCount);
+  //     });
+  //   }
+  //   else{
+  //     this.videoService.getVideosPagineted(null, null, true).subscribe(dadosRetorno => {      
+  //       this.paginacaoResult = dadosRetorno;
+  //       console.log('Visualizados ' + this.paginacaoResult.totalItemCount);
+  //     });
+  //   }  
+  // } 
+
   public onChangePaginacao(event: PageEvent, videoAssitido: boolean): void {
-    console.log(event);
     this.videoService.getVideosPagineted((event.pageIndex + 1), event.pageSize, videoAssitido).subscribe(retorno => {
       this.controlePaginacaoVideos(retorno, videoAssitido);
     });
@@ -62,13 +78,13 @@ export class ListVideosComponent implements OnInit {
 
   private controlePaginacaoVideos(dadosPaginacao: ResponsePageable, videoAssitido: boolean): void {
     if (dadosPaginacao != null){
-      this.paginacaoResult = dadosPaginacao;
-
       if (videoAssitido){
+        this.paginacaoResultVisualizados = dadosPaginacao;
         this.videosAssistidos = this.tratarRetornoPaginacao(dadosPaginacao.items);
         console.log(this.videosAssistidos);
       }        
       else {
+        this.paginacaoResultNaoVisualizados = dadosPaginacao;
         this.videosNaoAssistidos = this.tratarRetornoPaginacao(dadosPaginacao.items);
         console.log(this.videosNaoAssistidos);
       } 
