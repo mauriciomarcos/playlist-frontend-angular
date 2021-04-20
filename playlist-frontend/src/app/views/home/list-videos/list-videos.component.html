@@ -1,7 +1,7 @@
 <mat-tab-group mat-align-tabs="start" id="mat-tab-group">
     <mat-tab label="NÃO VISUALIZADOS">
-        <mat-progress-bar *ngIf="!controleCarregamentoVideosAssistidos" mode="indeterminate"></mat-progress-bar>
-        <div *ngIf="controleCarregamentoVideosAssistidos" id="fxLayout" fxLayout="row wrap" fxLayoutAlign="start center">
+        <mat-progress-bar *ngIf="!controleCarregamentoVideosNaoAssistidos" mode="indeterminate"></mat-progress-bar>
+        <div *ngIf="controleCarregamentoVideosNaoAssistidos" id="fxLayout" fxLayout="row wrap" fxLayoutAlign="start center">
             <ng-container *ngFor="let video of videosNaoAssistidos" id="ngContainer">                
                 <input type="hidden" [value]="video.id"/>
                 <mat-card fxFlex="0 1 calc(33.3% - 11px)" 
@@ -36,10 +36,56 @@
             </ng-container>
         </div>
 
-        <mat-paginator fxLayoutAlign="center center" [length]="paginacaoResult.pageCount" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+        <mat-paginator fxLayoutAlign="center center" 
+            [length]="paginacaoResult.totalItemCount" 
+            [pageSize]="paginacaoResult.pageSize" 
+            [pageSizeOptions]="[3, 6, 9]" 
+            (page)="onChangePaginacao($event, false)">
         </mat-paginator>
     </mat-tab>
     
     <mat-tab label="VISUALIZADOS">
+        <mat-progress-bar *ngIf="!controleCarregamentoVideosAssistidos" mode="indeterminate"></mat-progress-bar>
+        <div *ngIf="controleCarregamentoVideosAssistidos" id="fxLayout" fxLayout="row wrap" fxLayoutAlign="start center">
+            <ng-container *ngFor="let video of videosAssistidos" id="ngContainer">                
+                <input type="hidden" [value]="video.id"/>
+                <mat-card fxFlex="0 1 calc(33.3% - 11px)" 
+                          fxFlex.lt-md="0 1 calc(50% - 11px)" 
+                          fxFlex.lt-sm="100%" class="mat-car-video">           
+
+                    <mat-card-title class="mat-card-title-video">
+                        <div class="row">
+                            <p>
+                                <span class="tamanho-fonte-titulo-card" fxFlex="70" fxLayoutAlign="start center">{{video.descricaoVideo}}</span>
+                                <span fxFlex></span>
+                                <mat-chip class="mat-chip-date" fxFlex="25" fxLayoutAlign="center center">
+                                    <span class="tamanho-fonte-data-card">Cadastro: {{video.dataCadastro | localDateTime}}</span>
+                                </mat-chip>                                
+                            </p>
+                            <p>
+                                <span class="tamanho-fonte-data-card">Canal: {{video.nomeCanal}}</span>
+                            </p>
+                        </div>                      
+                    </mat-card-title>
+                    
+                    <mat-card-content fxLayoutAlign="center center">
+                      <div>
+                        <iframe width="460" height="300" [src]="video.urlSafe" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      </div>
+                    </mat-card-content>
+
+                    <div fxLayoutAlign="end" class="mat-card-acao">
+                        <button class="mat-card-button-acao" (click)="updateVideo(video)" title="Alterar para visualizado / Exclusão.">...</button>
+                    </div>
+                </mat-card>                  
+            </ng-container>
+        </div>
+
+        <mat-paginator fxLayoutAlign="center center" 
+            [length]="paginacaoResult.totalItemCount" 
+            [pageSize]="paginacaoResult.pageSize" 
+            [pageSizeOptions]="[3, 6, 9]" 
+            (page)="onChangePaginacao($event, true)">
+        </mat-paginator>
     </mat-tab>
 </mat-tab-group>
