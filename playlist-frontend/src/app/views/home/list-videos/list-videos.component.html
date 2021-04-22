@@ -1,6 +1,18 @@
-<mat-tab-group mat-align-tabs="start" id="mat-tab-group">
+<mat-tab-group mat-align-tabs="start" id="mat-tab-group">   
     <mat-tab label="NÃO VISUALIZADOS">
-        <mat-progress-bar *ngIf="!controleCarregamentoVideosNaoAssistidos" mode="indeterminate"></mat-progress-bar>
+        
+        <div class="select-list" fxLayout="row wrap" fxLayoutAlign="end">
+            <mat-form-field>
+                <mat-label>Selecione a categoria...</mat-label>
+                <mat-select placeholder="Categorias" (selectionChange)="selectChange($event)">
+                  <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
+                    {{ categoria.nome }}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+      
+        <mat-progress-bar *ngIf="!controleCarregamentoVideosNaoAssistidos" mode="indeterminate"></mat-progress-bar>                       
         <div *ngIf="controleCarregamentoVideosNaoAssistidos" id="fxLayout" fxLayout="row wrap" fxLayoutAlign="start center">
             <ng-container *ngFor="let video of videosNaoAssistidos" id="ngContainer">                
                 <input type="hidden" [value]="video.id"/>

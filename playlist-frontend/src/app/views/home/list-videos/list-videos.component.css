@@ -57,3 +57,8 @@
     cursor: pointer;
     border-radius: 25%;
 }
+
+.select-list{
+    padding-top: 10px;
+    padding-right: 3%;
+}

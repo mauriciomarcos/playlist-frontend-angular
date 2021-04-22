@@ -8,7 +8,7 @@ import { Video } from '../model/video.model';
   providedIn: 'root'
 })
 export class VideoService {
-  private baseURL = 'https://localhost:44346/api/Video';
+  private baseURL = 'https://localhost:5001/api/Video';
   private criar = '/criar';
   private atualizar = '/atualizar/';
   private excluir = '/excluir/'

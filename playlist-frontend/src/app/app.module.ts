@@ -25,6 +25,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { VideoFormCreateDialogComponent } from './views/home/video-formCreate-dialog/video-formCreate-dialog.component';
 import { VideoFormUpdateDialogComponent } from './views/home/video-form-update-dialog/video-form-update-dialog.component';
 import { ConfimationDialogComponent } from './shared/component/confimation-dialog/confimation-dialog.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ConfimationDialogComponent } from './shared/component/confimation-dialo
     ReactiveFormsModule,
     MatDatepickerModule,
     MatProgressBarModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSelectModule
   ],
   providers: [
     LocalDateTimePipe,

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
-import { MatTabChangeEvent } from '@angular/material/tabs';
+import { MatSelect } from '@angular/material/select';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Categoria } from 'src/app/shared/model/categoria.model';
 import { ResponsePageable } from 'src/app/shared/model/responsePageable.model';
 import { Video } from 'src/app/shared/model/video.model';
+import { CategoriaService } from 'src/app/shared/service/categoria.service';
 import { VideoService } from 'src/app/shared/service/video.service';
 import { VideoFormUpdateDialogComponent } from '../video-form-update-dialog/video-form-update-dialog.component';
 @Component({
@@ -14,40 +16,34 @@ import { VideoFormUpdateDialogComponent } from '../video-form-update-dialog/vide
 })
 export class ListVideosComponent implements OnInit {
 
-  videosAssistidos: Video[];
-  videosNaoAssistidos: Video[];
-  paginacaoResultVisualizados: ResponsePageable = new ResponsePageable();
-  paginacaoResultNaoVisualizados: ResponsePageable = new ResponsePageable();
-  controleCarregamentoVideosAssistidos: boolean = false;
-  controleCarregamentoVideosNaoAssistidos: boolean = false;
+  public videosAssistidos: Video[];
+  public videosNaoAssistidos: Video[];
+  public categorias: Categoria[];
+  public paginacaoResultVisualizados: ResponsePageable = new ResponsePageable();
+  public paginacaoResultNaoVisualizados: ResponsePageable = new ResponsePageable();
+  public controleCarregamentoVideosAssistidos: boolean = false;
+  public controleCarregamentoVideosNaoAssistidos: boolean = false;
 
   constructor(
-    public videoService: VideoService,
-    public sanitizer: DomSanitizer,
-    public paginator: MatPaginatorIntl,
-    public dialog: MatDialog
+    private videoService: VideoService,
+    private categoriaService: CategoriaService,
+    private sanitizer: DomSanitizer,
+    private paginator: MatPaginatorIntl,
+    private dialog: MatDialog
     ) { }
 
   ngOnInit(): void {
     this.iniciaConfiguracaoPaginacao();
     this.getVideos(false);
     this.getVideos(true);
+    this.getCategorias();
   }
 
-  // public changeTab(changeEvent: MatTabChangeEvent): void {
-  //   if (changeEvent.index == 0){      
-  //     this.videoService.getVideosPagineted(null, null, false).subscribe(dadosRetorno => {      
-  //       this.paginacaoResult = dadosRetorno;    
-  //       console.log('Não visualizados ' + this.paginacaoResult.totalItemCount);
-  //     });
-  //   }
-  //   else{
-  //     this.videoService.getVideosPagineted(null, null, true).subscribe(dadosRetorno => {      
-  //       this.paginacaoResult = dadosRetorno;
-  //       console.log('Visualizados ' + this.paginacaoResult.totalItemCount);
-  //     });
-  //   }  
-  // } 
+  public selectChange(event: MatSelect): void{
+    console.log(event.id);
+    console.log(event.value);
+   
+  }
 
   public onChangePaginacao(event: PageEvent, videoAssitido: boolean): void {
     this.videoService.getVideosPagineted((event.pageIndex + 1), event.pageSize, videoAssitido).subscribe(retorno => {
@@ -66,6 +62,15 @@ export class ListVideosComponent implements OnInit {
     this.videoService.getVideosPagineted(null, null, videoAssistido).subscribe(dadosRetorno => {      
       this.controlePaginacaoVideos(dadosRetorno, videoAssistido);
     });
+  }
+
+  private getCategorias(): void {
+    this.categoriaService.getAll().subscribe(response => {
+      if (response != null){
+        this.categorias = response;
+      }        
+      console.log(this.categorias);
+    });    
   }
 
   private iniciaConfiguracaoPaginacao(): void {
