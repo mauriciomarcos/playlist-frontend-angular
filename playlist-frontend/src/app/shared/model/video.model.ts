@@ -1,4 +1,5 @@
 import { SafeResourceUrl } from '@angular/platform-browser';
+import { Categoria } from './categoria.model';
 
 export class Video{
   id: string;
@@ -8,5 +9,7 @@ export class Video{
   dataViualizacao: Date;
   linkVideoExterno: string;
   urlSafe: SafeResourceUrl;
-  visualizado: boolean
+  visualizado: boolean;
+  categoriaId: string;
+  nomeCategoria: string; 
 }

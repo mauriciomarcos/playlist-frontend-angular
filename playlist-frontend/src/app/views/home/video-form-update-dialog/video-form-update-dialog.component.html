@@ -15,6 +15,15 @@
     </mat-form-field>
 
     <mat-form-field class="full-width">
+      <mat-label>Selecione a categoria...</mat-label>
+      <mat-select formControlName="categoriaId">
+        <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
+          {{ categoria.nome }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
       <mat-label>Link do vídeo:</mat-label>
       <input matInput formControlName="linkVideoExterno" name="linkVideoExterno">
     </mat-form-field>    

@@ -6,6 +6,8 @@ import { VideoService } from 'src/app/shared/service/video.service';
 import { MAT_MOMENT_DATE_FORMATS,  MomentDateAdapter,  MAT_MOMENT_DATE_ADAPTER_OPTIONS,} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import { ConfimationDialogComponent } from 'src/app/shared/component/confimation-dialog/confimation-dialog.component';
+import { CategoriaService } from 'src/app/shared/service/categoria.service';
+import { Categoria } from 'src/app/shared/model/categoria.model';
 
 @Component({
   selector: 'app-video-form-update-dialog',
@@ -24,22 +26,34 @@ import { ConfimationDialogComponent } from 'src/app/shared/component/confimation
 export class VideoFormUpdateDialogComponent implements OnInit {
 
   public videoForm: FormGroup;
+  public categorias: Categoria[];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public video: Video,
     private fb: FormBuilder,
     private videoService: VideoService,
+    private categoriaService: CategoriaService,
     public dialogRef: MatDialogRef<VideoFormUpdateDialogComponent>,
     public dialogConfirmation: MatDialog
     ) { }
   
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.carregarForm();
+    this.getCategorias();
   }
 
   cancel(): void {
     this.dialogRef.close();
     this.videoForm.reset();
+  }
+
+  private getCategorias(): void {
+    this.categoriaService.getAll().subscribe(response => {
+      if (response != null)
+        this.categorias = response;
+        const selectCategoria = this.categorias.find(cat => cat.id == this.video.categoriaId).id;
+        this.videoForm.get('categoriaId').setValue(selectCategoria);
+    })
   }
   
   private carregarForm(): void{
@@ -49,8 +63,9 @@ export class VideoFormUpdateDialogComponent implements OnInit {
       nomeCanal: [this.video.nomeCanal, [Validators.required]],
       dataCadastro: [this.video.dataCadastro, [Validators.required]],
       linkVideoExterno: [this.video.linkVideoExterno, [Validators.required]],
-      visualizado: [this.video.visualizado]
-    });
+      visualizado: [this.video.visualizado],
+      categoriaId: ['', [Validators.required]]
+    });   
   }
 
   atualizarVideo(): void{

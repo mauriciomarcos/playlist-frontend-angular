@@ -39,7 +39,7 @@ export class VideoFormCreateDialogComponent implements OnInit {
     this.getCategorias();
   }
 
-  public criarVideo(): void{
+  public criarVideo(): void{   
     this.videoService.postVideo(this.videoForm.value).subscribe(result => {
       this.dialogRef.close();
       window.location.reload();
@@ -64,7 +64,8 @@ export class VideoFormCreateDialogComponent implements OnInit {
       descricaoVideo: ['', [Validators.required]],
       nomeCanal: ['', [Validators.required]],
       dataCadastro: ['', [Validators.required]],
-      linkVideoExterno: ['', [Validators.required]]
+      linkVideoExterno: ['', [Validators.required]],
+      categoriaId: ['', [Validators.required]]
     });
   }
 }
