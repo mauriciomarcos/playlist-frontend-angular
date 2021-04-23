@@ -1,5 +1,5 @@
 
-<h1 mat-dialog-title>Cadastro</h1>
+<h1 mat-dialog-title>Cadastro de Vídeos</h1>
 <div mat-dialog-content>
   <form class="formulario" [formGroup]="videoForm">
     <input type="hidden" formControlName="id" name="id">
@@ -13,6 +13,15 @@
       <mat-label>Nome do canal:</mat-label>
       <input matInput formControlName="nomeCanal" name="nomeCanal">
     </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Selecione a categoria...</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
+          {{ categoria.nome }}
+        </mat-option>
+      </mat-select>
+  </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>Link do vídeo:</mat-label>
